@@ -1,0 +1,267 @@
+{
+  "info": {
+    "name": "Assignment 8 - Mongoose API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1" },
+    { "key": "userId", "value": "" },
+    { "key": "noteId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "1. Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/users/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "signup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"age\": 25,\n  \"phone\": \"01012345678\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "3. Update User",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/users/update?id={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "update"],
+              "query": [{ "key": "id", "value": "{{userId}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"age\": 28\n}"
+            }
+          }
+        },
+        {
+          "name": "4. Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/delete?id={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "delete"],
+              "query": [{ "key": "id", "value": "{{userId}}" }]
+            }
+          }
+        },
+        {
+          "name": "5. Get User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/get?id={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "get"],
+              "query": [{ "key": "id", "value": "{{userId}}" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "1. Create Note",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/notes?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"My First Note\",\n  \"content\": \"This is the content of my note.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. Update Note",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/notes/{{noteId}}?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "{{noteId}}"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Title\",\n  \"content\": \"Updated content.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "3. Replace Note",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/notes/replace/{{noteId}}?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "replace", "{{noteId}}"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Replaced Title\",\n  \"content\": \"Fully replaced content.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "4. Update All Notes Title",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/notes/all?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "all"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Bulk Updated Title\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. Delete Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/{{noteId}}?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "{{noteId}}"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            }
+          }
+        },
+        {
+          "name": "6. Get Paginated Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/paginate-sort?userId={{userId}}&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "paginate-sort"],
+              "query": [
+                { "key": "userId", "value": "{{userId}}" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "7. Get Note By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/{{noteId}}?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "{{noteId}}"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            }
+          }
+        },
+        {
+          "name": "8. Get Note By Content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/note-by-content?userId={{userId}}&content=Workout Plan",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "note-by-content"],
+              "query": [
+                { "key": "userId", "value": "{{userId}}" },
+                { "key": "content", "value": "Workout Plan" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "9. Get Notes With User Info (Populate)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/note-with-user?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "note-with-user"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            }
+          }
+        },
+        {
+          "name": "10. Get Notes With Aggregation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes/aggregate?userId={{userId}}&title=Code Review Notes",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "aggregate"],
+              "query": [
+                { "key": "userId", "value": "{{userId}}" },
+                { "key": "title", "value": "Code Review Notes" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "11. Delete All Notes",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notes?userId={{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [{ "key": "userId", "value": "{{userId}}" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
